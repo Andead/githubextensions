@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 using Tools.Github.Extensions;
 using Microsoft.Extensions.Logging;
 
-namespace Tools.Github.Autocomplete.Api
+namespace Tools.Github.Extensions
 {
-    public sealed class GitHubClient : IDisposable
+    public sealed class GitHubClient : IGitHubClient
     {
         private readonly HttpClient _client;
         private readonly ILogger _logger;
 
-        public GitHubClient(string server, string accessToken, ILogger logger = null)
+        public GitHubClient(GitHubConfiguration configuration, ILogger logger = null)
         {
             _logger = logger;
-            _client = GetClient(server, accessToken);
+            _client = GetClient(configuration.Server, configuration.OAuthAccessToken);
         }
 
         public void Dispose()

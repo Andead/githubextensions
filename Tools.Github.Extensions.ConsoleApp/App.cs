@@ -50,7 +50,8 @@ namespace Tools.Github.Extensions.ConsoleApp
 
             builder.RegisterType<ConsoleUserInterface>().As<IUserInterface>();
 
-            builder.RegisterType<AutocompleteService>();
+            builder.RegisterType<GitHubClient>().As<IGitHubClient>();
+            builder.RegisterType<AutocompleteService>().As<IAutocompleteService>();
             builder.RegisterType<ExtensionsService>();
 
             IContainer container = builder.Build();

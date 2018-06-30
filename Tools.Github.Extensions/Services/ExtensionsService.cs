@@ -4,9 +4,9 @@ namespace Tools.Github.Extensions
 {
     public class ExtensionsService
     {
-        private readonly AutocompleteService _autocompleteService;
+        private readonly IAutocompleteService _autocompleteService;
 
-        public ExtensionsService(AutocompleteService autocompleteService)
+        public ExtensionsService(IAutocompleteService autocompleteService)
         {
             _autocompleteService = autocompleteService;
         }
