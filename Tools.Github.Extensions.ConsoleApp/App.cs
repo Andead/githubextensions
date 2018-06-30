@@ -26,7 +26,7 @@ namespace Tools.Github.Extensions.ConsoleApp
                 .Build();
 
             options = ValidateOptions(options, configuration);
-            
+
             var builder = new ContainerBuilder();
             builder.RegisterInstance(new AutocompleteConfiguration
             {
@@ -39,13 +39,7 @@ namespace Tools.Github.Extensions.ConsoleApp
                 Server = options.Server
             });
 
-            ILogger logger = new ConsoleLoggerProvider((s, level) => {
-                #if DEBUG
-                return true;
-                #else
-                return level > LogLevel.Debug;
-                #endif
-            }, false).CreateLogger("default");
+            ILogger logger = new ConsoleLoggerProvider((_, __) => true, false).CreateLogger("default");
             builder.RegisterInstance(logger).As<ILogger>();
 
             builder.RegisterType<ConsoleUserInterface>().As<IUserInterface>();
@@ -66,11 +60,11 @@ namespace Tools.Github.Extensions.ConsoleApp
             return new Options
             {
                 Interval = options.Interval,
-                Id = options.Id,
-                Token = options.Token ?? github["oauthtoken"],
-                Server = options.Server ?? github["server"],
-                Repo = options.Repo ?? github["repo"],
-                Owner = options.Owner ?? github["owner"]
+                    Id = options.Id,
+                    Token = options.Token ?? github["oauthtoken"],
+                    Server = options.Server ?? github["server"],
+                    Repo = options.Repo ?? github["repo"],
+                    Owner = options.Owner ?? github["owner"]
             };
         }
 

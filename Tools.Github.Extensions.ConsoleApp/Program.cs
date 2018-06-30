@@ -24,7 +24,7 @@ namespace Tools.Github.Extensions.ConsoleApp
 
         private static void HandleParseError(IEnumerable<Error> errors)
         {
-            Console.WriteLine("Usage: github-autocomplete <pull_request_id> \n" +
+            Console.WriteLine("Usage: github-ext <pull_request_id> \n" +
                               "[-s <server>] [-t <token>]\n" +
                               "[-o <owner>] [-r <repo>]\n" +
                               "[-i <interval>]");
