@@ -13,3 +13,6 @@ Since autocomplete is the only feature now, it will be triggered for the pull re
 
 ## Configuration
 Server name, repo owner etc. can be either passed as command line arguments or specified in *appsettings.json*. You would need a personal OAuth access token with scope *repo* to use the app.
+
+# Downloads
+The latest release is available [here](https://github.com/andead/githubext/releases/latest).
