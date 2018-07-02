@@ -26,6 +26,6 @@ deploy:
       branch: master
       tags: true
     file_glob: true
-    file: *ConsoleApp/publish/*.zip
+    file: ./*ConsoleApp/publish/*.zip
     name: v$TRAVIS_TAG
     draft: true
