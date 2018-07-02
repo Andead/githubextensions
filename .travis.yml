@@ -5,6 +5,12 @@ script:
   - dotnet restore
   - dotnet test *Tests
 
+before_deploy:
+  - cd *ConsoleApp
+  - ./publish.sh
+  - zip -rmDT0 github-ext-$TRAVIS_TAG.linux-x64.zip linux-x64
+  - zip -rmDT0 github-ext-$TRAVIS_TAG.win-x64.zip win-x64
+
 deploy:
   provider: pages
   skip-cleanup: true
@@ -13,3 +19,15 @@ deploy:
   on:
     branch: master
   target-branch: gh-pages
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true
+  file_glob: true
+  file: *ConsoleApp/publish/*.zip
+  name: v$TRAVIS_TAG
+  draft: true
