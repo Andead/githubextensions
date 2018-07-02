@@ -8,6 +8,6 @@ namespace Tools.Github.Extensions
 
         public TimeSpan MinDelay { get; set; } = TimeSpan.FromSeconds(1);
 
-        public bool MergeUnstable { get; set; } = true;
+        public bool MergeUnstable { get; set; }
     }
 }

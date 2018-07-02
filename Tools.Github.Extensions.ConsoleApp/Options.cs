@@ -22,7 +22,7 @@ namespace Tools.Github.Extensions.ConsoleApp
         [Option('i', "interval", Default = 30, HelpText = "Polling interval, seconds")]
         public int Interval { get; set; }
 
-        [Option("merge-unstable", Default = true, HelpText = "Allow merging of pull requests with unstable branches (some checks not successful).")]
+        [Option("merge-unstable", Default = false, HelpText = "Allow merging of pull requests with unstable branches (some checks not successful).")]
         public bool MergeUnstable { get; set; }
     }
 }
