@@ -8,8 +8,8 @@ script:
 before_deploy:
   - cd *ConsoleApp
   - ./publish.sh
-  - zip -rmDT0 github-ext-$TRAVIS_TAG.linux-x64.zip linux-x64
-  - zip -rmDT0 github-ext-$TRAVIS_TAG.win-x64.zip win-x64
+  - zip -rmDT0 github-ext.linux-x64.zip linux-x64
+  - zip -rmDT0 github-ext.win-x64.zip win-x64
 
 deploy:
   - provider: pages
