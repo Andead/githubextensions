@@ -4,3 +4,11 @@ dotnet: 2.1.300
 script:
   - dotnet restore
   - dotnet test *Tests
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: false
+  on:
+    branch: gh-pages
