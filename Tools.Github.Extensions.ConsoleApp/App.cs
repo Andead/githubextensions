@@ -30,7 +30,8 @@ namespace Tools.Github.Extensions.ConsoleApp
             var builder = new ContainerBuilder();
             builder.RegisterInstance(new AutocompleteConfiguration
             {
-                PollingInterval = TimeSpan.FromSeconds(options.Interval)
+                PollingInterval = TimeSpan.FromSeconds(options.Interval),
+                MergeUnstable = options.MergeUnstable
             });
 
             builder.RegisterInstance(new GitHubConfiguration

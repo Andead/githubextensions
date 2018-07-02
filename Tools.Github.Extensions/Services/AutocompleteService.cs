@@ -24,9 +24,11 @@ namespace Tools.Github.Extensions
         public async Task<bool> Run(string repositoryOwner, string repositoryName, int number)
         {
             TimeSpan pollingInterval = _configuration.PollingInterval;
-            if (pollingInterval < _configuration.MinDelay){
+            if (pollingInterval < _configuration.MinDelay)
+            {
                 pollingInterval = _configuration.MinDelay;
             }
+            
             ConfiguredTaskAwaitable delay() => Task.Delay(pollingInterval).ConfigureAwait(true);
             DateTime timeAfterDelay() => DateTime.Now + pollingInterval;
             ConfiguredTaskAwaitable oneSecondDelay() => Task.Delay(_configuration.MinDelay).ConfigureAwait(true);
@@ -107,9 +109,11 @@ namespace Tools.Github.Extensions
                     continue;
                 }
 
-                if (pullRequest.MergeableState != "clean")
+                if (pullRequest.MergeableState != "clean" &&
+                    (!_configuration.MergeUnstable ||
+                        pullRequest.MergeableState != "unstable"))
                 {
-                    error($"Pull request #{pullRequest.Number} has an unsupported mergeable state: {pullRequest.MergeableState}.");
+                    error($"Pull request #{pullRequest.Number}'s branch is in unallowed mergeable state: {pullRequest.MergeableState}.");
                     return false;
                 }
 
