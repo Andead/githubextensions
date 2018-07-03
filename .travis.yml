@@ -1,9 +1,8 @@
 language: csharp
 mono: none
 dotnet: 2.1.300
-branches:
-  only:
-  - master
+if: branch = master OR tag IS present
+
 script:
   - dotnet restore
   - dotnet build
