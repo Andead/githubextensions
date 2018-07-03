@@ -16,8 +16,6 @@ deploy:
     skip-cleanup: true
     github-token: $GITHUB_TOKEN
     keep-history: false
-    on:
-      branch: master
     target-branch: gh-pages
   - provider: releases
     api_key: $GITHUB_TOKEN
@@ -28,4 +26,5 @@ deploy:
     file_glob: true
     file: ./*ConsoleApp/publish/*.zip
     name: v$TRAVIS_TAG
-    draft: true
+    tag_name: $TRAVIS_TAG
+    body: $TRAVIS_COMMIT_MESSAGE
