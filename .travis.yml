@@ -21,10 +21,10 @@ deploy:
     api_key: $GITHUB_TOKEN
     skip_cleanup: true
     on:
-      branch: master
       tags: true
     file_glob: true
     file: ./*ConsoleApp/publish/*.zip
     name: v$TRAVIS_TAG
     tag_name: $TRAVIS_TAG
     body: $TRAVIS_COMMIT_MESSAGE
+    draft: true
