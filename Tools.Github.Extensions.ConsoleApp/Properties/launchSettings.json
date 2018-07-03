@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "github-ext autocomplete": {
+      "commandName": "Project",
+      "commandLineArgs": "1"
+    }
+  }
+}

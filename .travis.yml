@@ -1,0 +1,30 @@
+language: csharp
+mono: none
+dotnet: 2.1.300
+if: branch = master OR tag IS present
+
+script:
+  - dotnet restore
+  - dotnet build
+  - dotnet test *Tests --no-build
+
+before_deploy:
+  - if [[ -n $TRAVIS_TAG ]]; then ./publish.sh $TRAVIS_TAG.$TRAVIS_BUILD_NUMBER; fi
+
+deploy:
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: false
+    target-branch: gh-pages
+  - provider: releases
+    api_key: $GITHUB_TOKEN
+    skip_cleanup: true
+    on:
+      tags: true
+    file_glob: true
+    file: ./*ConsoleApp/publish/*.zip
+    name: v$TRAVIS_TAG
+    tag_name: $TRAVIS_TAG
+    body: $TRAVIS_COMMIT_MESSAGE
+    draft: true
